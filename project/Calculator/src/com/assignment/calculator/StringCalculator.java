@@ -28,7 +28,7 @@ public class StringCalculator {
 
 	public int add(String numbers) {
 		int sum = 0;
-		if (null == numbers && numbers.isEmpty()) {
+		if (null == numbers || numbers.isEmpty()) {
 			return 0;
 		}
 		if (numbers.length() > 0) {
