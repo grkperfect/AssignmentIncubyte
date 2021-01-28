@@ -54,18 +54,25 @@ public class CalculatorTest {
 		exception.expectMessage("negatives not allowed - -7");
 		int sum = sc.Add("//l\n3l6\n-7");
 	}
-	
+
 	@Test
 	public void testMultipleNegativeNumbers() throws Exception {
 		exception.expect(Exception.class);
 		exception.expectMessage("negatives not allowed - -3,-6,-9");
 		int sum = sc.Add("//l\n-3l-6\n-9");
 	}
-	
+
 	@Test
 	public void testAdditionCount() throws Exception {
 		int addCount = sc.GetCalledCount();
-		assertEquals(1, addCount); // will not work if order of execution of test case is different
+		assertEquals(2, addCount); // will not work if order of execution of
+									// test case is different
+	}
+
+	@Test
+	public void testAddLessThan1001() throws Exception {
+		int sum = sc.Add("1002\n10,100");
+		assertEquals(110, sum);
 	}
 
 }

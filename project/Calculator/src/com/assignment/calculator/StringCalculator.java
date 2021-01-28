@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.lang.Integer;
 
 public class StringCalculator {
-	
+
 	private static int addCounter = 0;
 
 	public static void main(String args[]) {
@@ -51,7 +51,6 @@ public class StringCalculator {
 				String[] numArr = numbers.split(delimiter);
 				if (!(numArr.length > 3)) {
 					String negativeNumbers = "";
-					int arrCounter = 0;
 					for (String eachNum : numArr) {
 						if (null != eachNum && !eachNum.isEmpty()) {
 							int eachNumInteger = Integer.parseInt(eachNum);
@@ -59,12 +58,13 @@ public class StringCalculator {
 								negativeNumbers += eachNum + ",";
 								showResultFlag = true;
 							} else {
-								sum = sum + eachNumInteger;
+								if (eachNumInteger <= 1000)
+									sum = sum + eachNumInteger;
 							}
 						}
 					}
-					if(negativeNumbers.length() > 0){
-						negativeNumbers = negativeNumbers.substring(0, negativeNumbers.length()-1);
+					if (negativeNumbers.length() > 0) {
+						negativeNumbers = negativeNumbers.substring(0, negativeNumbers.length() - 1);
 						throw new Exception("negatives not allowed - " + String.join(",", negativeNumbers));
 					}
 				}
@@ -78,9 +78,9 @@ public class StringCalculator {
 		else
 			return sum;
 	}
-	
-	 public int GetCalledCount(){
-		 return addCounter;
-	 }
+
+	public int GetCalledCount() {
+		return addCounter;
+	}
 
 }
