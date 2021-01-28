@@ -51,5 +51,12 @@ public class CalculatorTest {
 		exception.expectMessage("negatives not allowed - -7");
 		int sum = CalculatorTest.sc.add("//l\n3l6\n-7");
 	}
+	
+	@Test
+	public void testMultipleNegativeNumbers() throws Exception {
+		exception.expect(Exception.class);
+		exception.expectMessage("negatives not allowed - -3,-6,-9");
+		int sum = CalculatorTest.sc.add("//l\n-3l-6\n-9");
+	}
 
 }

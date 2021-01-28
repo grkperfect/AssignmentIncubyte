@@ -47,15 +47,22 @@ public class StringCalculator {
 				numbers = numbers.replaceAll("\n", delimiter);
 				String[] numArr = numbers.split(delimiter);
 				if (!(numArr.length > 3)) {
+					String negativeNumbers = "";
+					int arrCounter = 0;
 					for (String eachNum : numArr) {
 						if (null != eachNum && !eachNum.isEmpty()) {
 							int eachNumInteger = Integer.parseInt(eachNum);
 							if (eachNumInteger < 0) {
+								negativeNumbers += eachNum + ",";
 								showResultFlag = true;
-								throw new Exception("negatives not allowed - " + eachNum);
+							} else {
+								sum = sum + eachNumInteger;
 							}
-							sum = sum + eachNumInteger;
 						}
+					}
+					if(negativeNumbers.length() > 0){
+						negativeNumbers = negativeNumbers.substring(0, negativeNumbers.length()-1);
+						throw new Exception("negatives not allowed - " + String.join(",", negativeNumbers));
 					}
 				}
 			} catch (Exception e) {
