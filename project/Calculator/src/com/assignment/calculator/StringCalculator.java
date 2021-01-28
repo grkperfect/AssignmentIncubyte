@@ -32,15 +32,19 @@ public class StringCalculator {
 			return 0;
 		}
 		if (numbers.length() > 0) {
-			numbers = numbers.replace("\n", ",");
-			String[] numArr = numbers.split(",");
+			String delimiter = ",";
+			if(numbers.substring(0, 2).equalsIgnoreCase("//")){
+				delimiter = Character.toString(numbers.charAt(2));
+				numbers = numbers.substring(4);
+			}
+			numbers = numbers.replaceAll("\n", delimiter);
+			String[] numArr = numbers.split(delimiter);
 			if (!(numArr.length > 3)) {
 				for (String eachNum : numArr) {
 					if(null != eachNum && !eachNum.isEmpty())
 					sum = sum + Integer.parseInt(eachNum);
 				}
 			}
-
 		}
 		return sum;
 	}

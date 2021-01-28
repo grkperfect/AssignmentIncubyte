@@ -31,5 +31,11 @@ public class CalculatorTest {
 		int sum = CalculatorTest.sc.add("1\n10,100");
 		assertEquals(111, sum);
 	}
+	
+	@Test
+	public void testDelimiters(){
+		int sum = CalculatorTest.sc.add("//l\n3l6\n7");
+		assertEquals(16, sum);
+	}
 
 }
