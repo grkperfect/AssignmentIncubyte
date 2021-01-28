@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.lang.Integer;
 
 public class StringCalculator {
+	
+	private static int addCounter = 0;
 
 	public static void main(String args[]) {
 
@@ -24,14 +26,15 @@ public class StringCalculator {
 		}
 		StringCalculator sc = new StringCalculator();
 		try {
-			System.out.println("Sum: " + sc.add(sb.toString()));
+			System.out.println("Sum: " + sc.Add(sb.toString()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public int add(String numbers) throws Exception {
+	public int Add(String numbers) throws Exception {
+		++addCounter;
 		int sum = 0;
 		boolean showResultFlag = false;
 		if (null == numbers || numbers.isEmpty()) {
@@ -75,5 +78,9 @@ public class StringCalculator {
 		else
 			return sum;
 	}
+	
+	 public int GetCalledCount(){
+		 return addCounter;
+	 }
 
 }
