@@ -19,5 +19,11 @@ public class CalculatorTest {
 		int sum = CalculatorTest.sc.add("1,3,10");
 		assertEquals(14, sum);
 	}
+	
+	@Test
+	public void testUnknownNumberInArgument(){
+		int sum = CalculatorTest.sc.add("1,3,10,0");
+		assertEquals(0, sum);
+	}
 
 }
