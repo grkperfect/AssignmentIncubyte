@@ -25,5 +25,11 @@ public class CalculatorTest {
 		int sum = CalculatorTest.sc.add("1,3,10,0");
 		assertEquals(0, sum);
 	}
+	
+	@Test
+	public void testLineChange(){
+		int sum = CalculatorTest.sc.add("1\n10,100");
+		assertEquals(111, sum);
+	}
 
 }
