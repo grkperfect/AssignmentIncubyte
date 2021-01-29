@@ -65,7 +65,7 @@ public class CalculatorTest {
 	@Test
 	public void testAdditionCount() throws Exception {
 		int addCount = sc.GetCalledCount();
-		assertEquals(2, addCount); // will not work if order of execution of
+		assertEquals(3, addCount); // will not work if order of execution of
 									// test case is different
 	}
 
@@ -74,5 +74,10 @@ public class CalculatorTest {
 		int sum = sc.Add("1002\n10,100");
 		assertEquals(110, sum);
 	}
-
+	
+	@Test
+	public void testAddDelimiterLength() throws Exception {
+		int sum = sc.Add("//[***]\n1***2***3");
+		assertEquals(6, sum);
+	}
 }

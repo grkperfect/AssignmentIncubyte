@@ -13,7 +13,7 @@ public class StringCalculator {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		try {
-			while (i < 3) {
+			while (i < 2) {
 				if (i != 0)
 					sb.append("\n");
 				sb.append(scanner.nextLine());
@@ -44,11 +44,25 @@ public class StringCalculator {
 			try {
 				String delimiter = ",";
 				if (numbers.substring(0, 2).equalsIgnoreCase("//")) {
-					delimiter = Character.toString(numbers.charAt(2));
-					numbers = numbers.substring(4);
+					if (numbers.substring(2, 3).equalsIgnoreCase("[")) {
+						int delimiterEndIndex = numbers.lastIndexOf(']');
+						delimiter = numbers.substring(3, delimiterEndIndex);
+						numbers = numbers.substring(delimiterEndIndex + 2);
+					} else {
+						delimiter = Character.toString(numbers.charAt(2));
+						numbers = numbers.substring(4);
+					}
 				}
 				numbers = numbers.replaceAll("\n", delimiter);
-				String[] numArr = numbers.split(delimiter);
+				String specialChars = "*+?^";
+				String escapedDelimiter = "";
+				for (int k = 0; k < delimiter.length(); k++) {
+					if (specialChars.contains(delimiter.substring(k, k + 1)))
+						escapedDelimiter += "\\" + delimiter.substring(k, k + 1);
+					else
+						escapedDelimiter += delimiter;
+				}
+				String[] numArr = numbers.split(escapedDelimiter);
 				if (!(numArr.length > 3)) {
 					String negativeNumbers = "";
 					for (String eachNum : numArr) {
