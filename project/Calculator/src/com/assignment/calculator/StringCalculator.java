@@ -48,7 +48,7 @@ public class StringCalculator {
 					if (numbers.substring(2, 3).equalsIgnoreCase("[")) {
 						int delimiterEndIndex = numbers.lastIndexOf(']');
 						// assuming " " is not a delimiter
-						delimiterArr = numbers.substring(3, delimiterEndIndex ).replace("][", " ").split(" ");
+						delimiterArr = numbers.substring(3, delimiterEndIndex).replace("][", " ").split(" ");
 						numbers = numbers.substring(delimiterEndIndex + 2);
 					} else {
 						delimiterArr = Character.toString(numbers.charAt(2)).split("");
@@ -58,20 +58,7 @@ public class StringCalculator {
 					delimiterArr = delimiter.split("");
 				}
 				numbers = numbers.replaceAll("\n", delimiterArr[0]);
-				String specialChars = "*+?^";
-				String[] escapedDelimiterArr =new String[delimiterArr.length];
-				for(int j=0; j< delimiterArr.length; j++){
-					delimiter = delimiterArr[j];
-					String escapedDelimiter = "";
-					for (int k = 0; k < delimiter.length(); k++) {
-						if (specialChars.contains(delimiter.substring(k, k + 1)))
-							escapedDelimiter += delimiter.substring(k, k + 1);
-						else
-							escapedDelimiter += delimiter;
-					}
-					escapedDelimiterArr[j] = escapedDelimiter;
-				}
-				for(String replaceDelimiter : escapedDelimiterArr){
+				for (String replaceDelimiter : delimiterArr) {
 					numbers = numbers.replace(replaceDelimiter, ",");
 				}
 				String[] numArr = numbers.split(",");
